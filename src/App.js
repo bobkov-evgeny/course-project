@@ -13,7 +13,12 @@ function App() {
 
 	const handleToggleUserBookmark = (userId) => {
 		const newUsers = users.map((user) => {
-			return user._id === userId ? { ...user, bookmarked: true } : user;
+			if (user._id === userId) {
+				return !user.bookmarked || user.bookmarked === false
+					? { ...user, bookmarked: true }
+					: { ...user, bookmarked: false };
+			}
+			return user;
 		});
 		setUsers(newUsers);
 	};
