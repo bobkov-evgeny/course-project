@@ -1,14 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 
-const Bookmark = () => {
-	const [bookmarked, setBookmark] = useState(false);
-
-	const toggleBookmark = () =>
-		bookmarked ? setBookmark(false) : setBookmark(true);
-
+const Bookmark = ({ bookmarked, onClick }) => {
 	return (
 		<>
-			<button onClick={toggleBookmark} className="btn btn-danger">
+			<button onClick={onClick} className="btn btn-danger">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					width="16"
