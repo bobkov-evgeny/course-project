@@ -17,6 +17,7 @@ function App() {
 		});
 		setUsers(newUsers);
 	};
+
 	return (
 		<>
 			<SearchStatus numberOfGuests={users.length} />
