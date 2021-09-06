@@ -1,17 +1,25 @@
 import React from "react";
+import PropTypes from "prop-types";
 import {
-	BOOKMARKED_ICON_URL,
-	NOT_BOOKMARKED_ICON_URL,
+    BOOKMARKED_ICON_URL,
+    NOT_BOOKMARKED_ICON_URL,
 } from "../utils/bookmarks-icons";
 
 const Bookmark = ({ bookmarked, onClick }) => {
-	return (
-		<>
-			<button onClick={onClick} className="btn btn-danger">
-				{bookmarked === true ? BOOKMARKED_ICON_URL : NOT_BOOKMARKED_ICON_URL}
-			</button>
-		</>
-	);
+    return (
+        <>
+            <button onClick={onClick} className="btn btn-danger">
+                {bookmarked === true
+                    ? BOOKMARKED_ICON_URL
+                    : NOT_BOOKMARKED_ICON_URL}
+            </button>
+        </>
+    );
+};
+
+Bookmark.propTypes = {
+    bookmarked: PropTypes.bool.isRequired,
+    onClick: PropTypes.func.isRequired,
 };
 
 export default Bookmark;
