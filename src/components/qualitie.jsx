@@ -12,7 +12,7 @@ const Qualitie = ({ quality }) => {
 };
 
 Qualitie.propTypes = {
-    quality: PropTypes.number.isRequired,
+    quality: PropTypes.object.isRequired,
 };
 
 export default Qualitie;

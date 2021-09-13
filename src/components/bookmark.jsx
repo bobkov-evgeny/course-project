@@ -9,16 +9,14 @@ const Bookmark = ({ bookmarked, onClick }) => {
     return (
         <>
             <button onClick={onClick} className="btn btn-danger">
-                {bookmarked === true
-                    ? BOOKMARKED_ICON_URL
-                    : NOT_BOOKMARKED_ICON_URL}
+                {bookmarked ? BOOKMARKED_ICON_URL : NOT_BOOKMARKED_ICON_URL}
             </button>
         </>
     );
 };
 
 Bookmark.propTypes = {
-    bookmarked: PropTypes.bool.isRequired,
+    bookmarked: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
 };
 

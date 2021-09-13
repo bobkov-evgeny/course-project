@@ -6,7 +6,7 @@ const Pagination = ({ onPageChange, itemsCount, pageSize, currentPage }) => {
     const pageCount = itemsCount / pageSize;
 
     const pages = _.range(1, pageCount + 1);
-    if (pages.length < 1) return;
+    if (pages.length < 1) console.log("длина 0");
 
     return (
         <nav>
@@ -18,6 +18,7 @@ const Pagination = ({ onPageChange, itemsCount, pageSize, currentPage }) => {
                             (page === currentPage ? "active" : "")
                         }
                         key={page}
+                        role="button"
                     >
                         <a
                             className="page-link"
