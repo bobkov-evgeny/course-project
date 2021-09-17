@@ -19,7 +19,7 @@ const User = ({ user, onDelete, onToggleUserBookmark }) => {
                 <td>
                     <Bookmark
                         key={user._id}
-                        bookmarked={user.bookmarked}
+                        bookmarked={user.bookmark}
                         onClick={() => onToggleUserBookmark(user._id)}
                     />
                 </td>

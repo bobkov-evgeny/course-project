@@ -16,9 +16,9 @@ function App() {
     const handleToggleUserBookmark = (userId) => {
         const newUsers = users.map((user) => {
             if (user._id === userId) {
-                return !user.bookmarked || user.bookmarked === false
-                    ? { ...user, bookmarked: true }
-                    : { ...user, bookmarked: false };
+                return !user.bookmark || user.bookmark === false
+                    ? { ...user, bookmark: true }
+                    : { ...user, bookmark: false };
             }
             return user;
         });
