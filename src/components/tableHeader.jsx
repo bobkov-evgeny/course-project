@@ -12,6 +12,7 @@ const TableHeader = ({ onSort, selectedSort, columns }) => {
             onSort({ path: item, order: "asc" });
         }
     };
+
     const toggleSortCaret = (column) => {
         if (column.path !== selectedSort.path) return;
         if (selectedSort.order === "asc") {

@@ -11,6 +11,8 @@ const UserTable = ({
     onToggleUserBookmark,
     selectedSort,
     onSort,
+    onSearch,
+    searchFieldValue,
 }) => {
     const column = {
         name: {
@@ -56,6 +58,8 @@ const UserTable = ({
         <Table
             column={column}
             onSort={onSort}
+            onSearch={onSearch}
+            searchFieldValue={searchFieldValue}
             selectedSort={selectedSort}
             data={users}
         />
@@ -67,6 +71,8 @@ UserTable.propTypes = {
     onDelete: PropTypes.func.isRequired,
     onToggleUserBookmark: PropTypes.func.isRequired,
     onSort: PropTypes.func.isRequired,
+    onSearch: PropTypes.func.isRequired,
+    searchFieldValue: PropTypes.string,
     selectedSort: PropTypes.object.isRequired,
 };
 
