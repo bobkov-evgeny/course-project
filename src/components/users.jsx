@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Pagination from "./pagination";
 import { paginate } from "../utils/paginate";
@@ -14,6 +14,7 @@ const Users = () => {
     const [professions, setProfession] = useState();
     const [selectedProf, setSelectedProf] = useState();
     const [sortBy, setSortBy] = useState({ path: "name", order: "asc" });
+    const [searchBy, setSearchBy] = useState("");
 
     const [users, setUsers] = useState();
     useEffect(() => {
@@ -50,11 +51,17 @@ const Users = () => {
     };
 
     const handleProfessionSelect = (item) => {
+        setSearchBy("");
         setSelectedProf(item);
     };
 
     const handleSort = (item) => {
         setSortBy(item);
+    };
+
+    const handleSearch = (item) => {
+        setSelectedProf();
+        setSearchBy(item);
     };
 
     const clearFilter = () => {
@@ -66,9 +73,15 @@ const Users = () => {
             ? users.filter((user) => user.profession.name === selectedProf)
             : users;
 
-        const count = filteredUsers.length;
+        const searchedUsers = searchBy
+            ? filteredUsers.filter((user) =>
+                  user.name.toLowerCase().includes(searchBy.toLowerCase())
+              )
+            : filteredUsers;
+
+        const count = searchedUsers.length;
         const sortedUsers = _.orderBy(
-            filteredUsers,
+            searchedUsers,
             [sortBy.path],
             [sortBy.order]
         );
@@ -95,15 +108,15 @@ const Users = () => {
                 )}
                 <div className="d-flex flex-column">
                     <SearchStatus numberOfGuests={count} />
-                    {count > 0 && (
-                        <UserTable
-                            users={usersCrop}
-                            onDelete={handleDelete}
-                            onToggleUserBookmark={handleToggleUserBookmark}
-                            onSort={handleSort}
-                            selectedSort={sortBy}
-                        />
-                    )}
+                    <UserTable
+                        users={usersCrop}
+                        onDelete={handleDelete}
+                        onToggleUserBookmark={handleToggleUserBookmark}
+                        onSort={handleSort}
+                        onSearch={handleSearch}
+                        searchFieldValue={searchBy}
+                        selectedSort={sortBy}
+                    />
                     <div className="d-flex justify-content-center">
                         <Pagination
                             itemsCount={count}
