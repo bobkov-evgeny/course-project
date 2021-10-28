@@ -2,7 +2,13 @@ import React from "react";
 import Select from "react-select";
 import PropTypes from "prop-types";
 
-const MultiSelectField = ({ options, onChange, name, label }) => {
+const MultiSelectField = ({
+    options,
+    onChange,
+    name,
+    label,
+    defaultValues = [],
+}) => {
     const optionsArray =
         !Array.isArray(options) && typeof options === "object"
             ? Object.keys(options).map((optionName) => ({
@@ -10,10 +16,26 @@ const MultiSelectField = ({ options, onChange, name, label }) => {
                   value: options[optionName]._id,
               }))
             : options;
+
+    const defaultArray = Object.keys(defaultValues).map((optionName) => ({
+        label: defaultValues[optionName].name,
+        value: defaultValues[optionName]._id,
+    }));
+
     const handleChange = (value) => {
-        onChange({ name: name, value });
+        const result = value.map((item) => ({
+            _id: item.value,
+            name: item.label,
+            color: Object.values(options)
+                .filter((option) => option._id === item.value)
+                .flatMap((item) => item.color)[0],
+        }));
+
+        onChange({ name: name, value: result });
     };
 
+    console.log(defaultValues);
+    console.log(defaultArray);
     return (
         <div className="mb-4">
             <label htmlFor="validationCustom04" className="form-label">
@@ -27,6 +49,7 @@ const MultiSelectField = ({ options, onChange, name, label }) => {
                 name={name}
                 options={optionsArray}
                 onChange={handleChange}
+                value={defaultArray}
             />
         </div>
     );
@@ -37,6 +60,7 @@ MultiSelectField.propTypes = {
     options: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
     name: PropTypes.string,
     label: PropTypes.string,
+    defaultValues: PropTypes.array,
 };
 
 export default MultiSelectField;
