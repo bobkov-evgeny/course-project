@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import Qualitie from "../../ui/qualities/qualitie";
 import api from "../../../API";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
-const UserPage = ({ userId, onClick }) => {
+const UserPage = ({ userId }) => {
     const [user, setUser] = useState();
     useEffect(() => {
         api.users.getById(userId).then((data) => setUser(data));
@@ -27,19 +28,15 @@ const UserPage = ({ userId, onClick }) => {
             <h3>Профессия:</h3> {user.profession.name}
             <h3>Встретился, раз:</h3> {user.completedMeetings}
             <h3>Оценка:</h3> {user.rate}
-            <button
-                className="mt-4 btn-primary"
-                onClick={() => onClick("/users")}
-            >
-                Все пользователи
-            </button>
+            <Link to={`/users/${userId}/edit`}>
+                <button className="mt-4 btn-primary">Изменить</button>
+            </Link>
         </div>
     );
 };
 
 UserPage.propTypes = {
     userId: PropTypes.string.isRequired,
-    onClick: PropTypes.func.isRequired,
 };
 
 export default UserPage;

@@ -1,17 +1,24 @@
 import React from "react";
-import { useHistory, useParams } from "react-router";
+import { useParams } from "react-router";
 import UserPage from "../components/page/usersPage/userPage";
-import UsersListPage from "../components/page/usersListPage/usersListPage";
+import UsersListPage from "../components/page/usersListPage";
+import UserEditForm from "../components/ui/userEditForm";
 
 const Users = () => {
     const { userId } = useParams();
-    const { replace } = useHistory();
+    const { edit } = useParams();
 
     return (
         <>
             {userId
 ? (
-                <UserPage userId={userId} onClick={replace} />
+                edit
+? (
+                    <UserEditForm userId={userId} />
+                )
+: (
+                    <UserPage userId={userId} />
+                )
             )
 : (
                 <UsersListPage />
