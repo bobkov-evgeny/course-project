@@ -69,9 +69,9 @@ const UserEditForm = ({ userId }) => {
     };
 
     return (
-        <div className="ms-5 mt-5 pt-3">
+        <div className="container mt-5">
             <div className="row">
-                <div className="col-md-4">
+                <div className="col-md-5 offset-2 shadow p-5">
                     <form onSubmit={handleSubmit}>
                         <TextField
                             label="Имя"

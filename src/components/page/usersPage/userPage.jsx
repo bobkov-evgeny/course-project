@@ -12,25 +12,43 @@ const UserPage = ({ userId }) => {
 
     if (!user) return <>Loading...</>;
     return (
-        <div
-            style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "flex-start",
-                marginLeft: 30,
-            }}
-        >
-            <h1>{user.name}</h1>
-            <h3>Качества: </h3>
-            {user.qualities.map((quality) => (
-                <Qualitie key={quality.name} quality={quality} />
-            ))}
-            <h3>Профессия:</h3> {user.profession.name}
-            <h3>Встретился, раз:</h3> {user.completedMeetings}
-            <h3>Оценка:</h3> {user.rate}
-            <Link to={`/users/${userId}/edit`}>
-                <button className="mt-4 btn-primary">Изменить</button>
-            </Link>
+        <div className="container mt-5">
+            <div className="row">
+                <div className="col-md-5 offset-2 shadow p-5">
+                    <div
+                        style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "flex-start",
+                        }}
+                    >
+                        <div className="w-100 d-flex justify-content-center mb-4">
+                            <h1>{user.name}</h1>
+                        </div>
+                        <h3>Качества: </h3>
+                        {user.qualities.map((quality) => (
+                            <Qualitie key={quality.name} quality={quality} />
+                        ))}
+                        <h3>Профессия:</h3> {user.profession.name}
+                        <h3>Встретился, раз:</h3> {user.completedMeetings}
+                        <h3>Оценка:</h3> {user.rate}
+                        <div className="w-100 mt-4 mb-2 d-flex justify-content-center">
+                            <Link
+                                className="btn mt-4 w-25 btn-primary"
+                                to={`/users`}
+                            >
+                                Назад
+                            </Link>
+                            <Link
+                                className="btn mt-4 w-25 ms-4 btn-success"
+                                to={`/users/${userId}/edit`}
+                            >
+                                Изменить
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };

@@ -8,7 +8,7 @@ import Main from "./layouts/main";
 
 function App() {
     return (
-        <div>
+        <div className="container mt-4">
             <NavBar />
 
             <Switch>
