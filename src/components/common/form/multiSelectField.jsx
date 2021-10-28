@@ -34,8 +34,6 @@ const MultiSelectField = ({
         onChange({ name: name, value: result });
     };
 
-    console.log(defaultValues);
-    console.log(defaultArray);
     return (
         <div className="mb-4">
             <label htmlFor="validationCustom04" className="form-label">

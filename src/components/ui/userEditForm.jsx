@@ -25,7 +25,6 @@ const UserEditForm = ({ userId }) => {
     const isValid = Object.keys(errors).length === 0;
 
     const handleChange = (value) => {
-        console.log(value);
         setData((prevState) => ({ ...prevState, [value.name]: value.value }));
     };
 
