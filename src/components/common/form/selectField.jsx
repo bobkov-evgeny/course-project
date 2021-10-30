@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 const SelectField = ({
     label,
     value,
+    name,
     onChange,
     defaultOption,
     options,
@@ -14,12 +15,16 @@ const SelectField = ({
         !Array.isArray(options) && typeof options === "object"
             ? Object.keys(options).map((optionName) => ({
                   name: options[optionName].name,
-                  value: options[optionName]._id,
+                  _id: options[optionName]._id,
               }))
             : options;
 
     const handleChange = ({ target }) => {
-        onChange({ name: [target.name], value: target.value });
+        let result;
+        optionsArray.forEach((option) => {
+            if (Object.values(option).includes(target.value)) result = option;
+        });
+        onChange({ name: target.name, value: result });
     };
 
     return (
@@ -30,8 +35,8 @@ const SelectField = ({
             <select
                 className={getInputClasses()}
                 id="validationCustom04"
-                name="profession"
-                value={value}
+                name={name}
+                value={value.name}
                 onChange={handleChange}
             >
                 <option disabled value="">
@@ -51,7 +56,8 @@ const SelectField = ({
 
 SelectField.propTypes = {
     label: PropTypes.string,
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+    name: PropTypes.string,
     error: PropTypes.string,
     onChange: PropTypes.func,
     defaultOption: PropTypes.string,

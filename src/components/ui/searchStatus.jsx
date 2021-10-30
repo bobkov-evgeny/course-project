@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const SearchStatus = ({ numberOfGuests }) => {
     if (numberOfGuests !== 0) {
         return (
-            <span className={"badge bg-primary m-2"}>
+            <span className="badge bg-primary mb-3">
                 <h3>
                     {numberOfGuests} человек
                     {numberOfGuests === 2 ||
@@ -20,7 +20,7 @@ const SearchStatus = ({ numberOfGuests }) => {
     }
 
     return (
-        <span className={"badge bg-danger m-2"}>
+        <span className="badge bg-danger mb-3">
             <h3>Никто не пойдет тусить с тобой :(</h3>
         </span>
     );
