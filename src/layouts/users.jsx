@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router";
-import UserPage from "../components/page/usersPage/userPage";
+import UserPage from "../components/page/userPage/userPage";
 import UsersListPage from "../components/page/usersListPage";
 import UserEditForm from "../components/ui/userEditForm";
 

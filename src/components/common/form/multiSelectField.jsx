@@ -28,7 +28,7 @@ const MultiSelectField = ({
             name: item.label,
             color: Object.values(options)
                 .filter((option) => option._id === item.value)
-                .flatMap((item) => item.color)[0],
+                .map((item) => item.color)[0],
         }));
 
         onChange({ name: name, value: result });

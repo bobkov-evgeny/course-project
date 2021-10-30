@@ -69,19 +69,17 @@ const UsersListPage = () => {
     };
 
     if (users) {
-        const filteredUsers = selectedProf
+        const filteredUsers = searchBy
+            ? users.filter((user) =>
+                  user.name.toLowerCase().includes(searchBy.toLowerCase())
+              )
+            : selectedProf
             ? users.filter((user) => user.profession.name === selectedProf)
             : users;
 
-        const searchedUsers = searchBy
-            ? filteredUsers.filter((user) =>
-                  user.name.toLowerCase().includes(searchBy.toLowerCase())
-              )
-            : filteredUsers;
-
-        const count = searchedUsers.length;
+        const count = filteredUsers.length;
         const sortedUsers = _.orderBy(
-            searchedUsers,
+            filteredUsers,
             [sortBy.path],
             [sortBy.order]
         );
@@ -108,13 +106,20 @@ const UsersListPage = () => {
                 )}
                 <div className="d-flex flex-column">
                     <SearchStatus numberOfGuests={count} />
+                    <input
+                        className="w-100 mb-2"
+                        style={{ height: "40px", padding: "10px" }}
+                        type="text"
+                        placeholder="Search..."
+                        value={searchBy}
+                        onChange={(e) => handleSearch(e.target.value)}
+                    />
                     <UserTable
                         users={usersCrop}
                         onDelete={handleDelete}
                         onToggleUserBookmark={handleToggleUserBookmark}
                         onSort={handleSort}
                         onSearch={handleSearch}
-                        searchFieldValue={searchBy}
                         selectedSort={sortBy}
                     />
                     <div className="d-flex justify-content-center">
